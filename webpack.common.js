@@ -1,17 +1,23 @@
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const Visualizer = require('webpack-visualizer-plugin');
+// const StyleLintPlugin = require('stylelint-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   entry: './src/main.ts',
   resolve: {
     // 将 `.ts` 添加为一个可解析的扩展名。
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.tsx', '.ts', '.js', '.vue', '.json']
   },
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/
-      },
+      // {
+      //   enforce: 'pre',
+      //   test: /\.(js|vue)$/,
+      //   loader: 'eslint-loader',
+      //   exclude: /node_modules/
+      // },
       {
         test: /\.vue$/,
         loader: 'vue-loader'
@@ -49,9 +55,15 @@ module.exports = {
   },
   plugins: [
     // 请确保引入这个插件！
+    new CleanWebpackPlugin(['dist']),
+    new Visualizer(),
     new VueLoaderPlugin(),
-    new StyleLintPlugin({
-      files: ['**/*.{vue,htm,html,css,sss,less,scss,sass}'],
+    // new StyleLintPlugin({
+    //   files: ['**/*.{vue,htm,html,css,sss,less,scss,sass}']
+    // }),
+    new HtmlWebpackPlugin({
+      title: 'vue-webpack',
+      template: './index.html'
     })
   ]
 };
