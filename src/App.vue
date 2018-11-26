@@ -4,11 +4,11 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
-    <!-- <router-view/> -->1111111
+    <!-- <router-view/> -->1111222
   </div>
 </template>
 
 <style lang="less">
-// @import './less/reset.less';
+@import './style.less';
 </style>
 

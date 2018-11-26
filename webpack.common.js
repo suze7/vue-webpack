@@ -1,8 +1,11 @@
+'use strict'
+const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
 // const StyleLintPlugin = require('stylelint-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   entry: './src/main.ts',
@@ -58,12 +61,19 @@ module.exports = {
     new CleanWebpackPlugin(['dist']),
     new Visualizer(),
     new VueLoaderPlugin(),
+    // "@babel/plugin-syntax-dynamic-import",
     // new StyleLintPlugin({
     //   files: ['**/*.{vue,htm,html,css,sss,less,scss,sass}']
     // }),
+    new webpack.HashedModuleIdsPlugin(),
     new HtmlWebpackPlugin({
       title: 'vue-webpack',
       template: './index.html'
     })
-  ]
+  ],
+  output: {
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  }
 };
