@@ -8,7 +8,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/main.ts',
+  entry: {
+    app: './src/main.ts',
+  },
   resolve: {
     // 将 `.ts` 添加为一个可解析的扩展名。
     extensions: ['.tsx', '.ts', '.js', '.vue', '.json']
@@ -74,6 +76,7 @@ module.exports = {
   output: {
     filename: '[name].[contenthash].js',
     chunkFilename: '[name].bundle.js',
+    publicPath: '/assets/',
     path: path.resolve(__dirname, 'dist')
   }
 };

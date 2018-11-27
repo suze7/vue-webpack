@@ -4,12 +4,10 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
-    <router-view/>
-    1111222
+    <!-- <router-view/> -->
+    <img src="../../assests/carousel05.png">
   </div>
 </template>
 
-<style lang="less">
-@import './style.less';
-</style>
+
 
