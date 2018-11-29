@@ -1,11 +1,16 @@
+'use strict'
+const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin');
 // const StyleLintPlugin = require('stylelint-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/main.ts',
+  entry: {
+    app: './src/main.ts',
+  },
   resolve: {
     // 将 `.ts` 添加为一个可解析的扩展名。
     extensions: ['.tsx', '.ts', '.js', '.vue', '.json']
@@ -58,12 +63,20 @@ module.exports = {
     new CleanWebpackPlugin(['dist']),
     new Visualizer(),
     new VueLoaderPlugin(),
+    // "@babel/plugin-syntax-dynamic-import",
     // new StyleLintPlugin({
     //   files: ['**/*.{vue,htm,html,css,sss,less,scss,sass}']
     // }),
+    new webpack.HashedModuleIdsPlugin(),
     new HtmlWebpackPlugin({
       title: 'vue-webpack',
       template: './index.html'
     })
-  ]
+  ],
+  output: {
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].bundle.js',
+    publicPath: '/assets/',
+    path: path.resolve(__dirname, 'dist')
+  }
 };
