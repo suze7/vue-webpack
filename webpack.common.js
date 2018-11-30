@@ -48,7 +48,13 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: ['file-loader']
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'assets/img'
+            }
+          }],
       },
       {
         test: /\.tsx?$/,
@@ -76,7 +82,7 @@ module.exports = {
   output: {
     filename: '[name].[contenthash].js',
     chunkFilename: '[name].bundle.js',
-    publicPath: '/assets/',
+    publicPath: './',
     path: path.resolve(__dirname, 'dist')
   }
 };

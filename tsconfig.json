@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
-    "module": "commonjs",
+    "module": "commonJs",
     "target": "es5",
     "moduleResolution": "node",
     "experimentalDecorators": true,
